@@ -24,4 +24,3 @@ do
       mkdir -p "$htmlFolder/$dir" && markdown2 "$dir/$file" > "$htmlFolder/$dir/$filename"
     done
 done
-

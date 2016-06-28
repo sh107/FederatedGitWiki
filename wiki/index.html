@@ -1,23 +1,24 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Responsive Two Column Layout (Left Column Fluid)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../css/layout.css" />
+    <title>Responsive Two Column Layout (Left Column Fluid)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" type="text/css" href="../css/github-pandoc.css" />-->
+    <link rel="stylesheet" type="text/css" href="../css/layout.css" />
 </head>
 
 <body>
 
-  <header>
-    <nav>
-      <ul class="nav inline-items">
-        <li><a href="#" id="phenomenal-h2020" >PhenomeNal H2020</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!--<header>-->
+    <!--<nav>-->
+      <!--<ul class="nav inline-items">-->
+        <!--<li><a href="#" id="phenomenal-h2020.wiki" >PhenomeNal H2020</a></li>-->
+      <!--</ul>-->
+    <!--</nav>-->
+  <!--</header>-->
 
   <div class="columnsContainer">
 
@@ -26,9 +27,9 @@
     </div>
 
     <div class="rightColumn">
-      <!--<ul class="nav inline-items">-->
-        <!--<li><a href="#" id="Home">Home</a></li>-->
-      <!--</ul>-->
+      <ul class="nav inline-items">
+        <li><a href="#" id="Home">Home</a></li>
+      </ul>
     </div>
 
   </div>
@@ -41,20 +42,64 @@
 
 $( document ).ready(function() {
 
-    $.get( "../wiki-html/", function( data ) {
-        $( ".rightColumn" ).html( data );
+    loadPage("Home")
+});
+
+//$( "#Home" ).click(function() {
+//    getPage("Home")
+//    getRightPanel()
+//});
+
+//$( "#phenomenal-h2020.wiki" ).click(function() {
+//    loadPage("Home")
+//});
+
+var wikiPageBuffer = {}
+
+function loadPage( page ){
+//    getTopPanel()
+    getRightPanel()
+    getPage(page)
+}
+
+function getTopPanel() {
+    $.get( "controller.php", function( data ) {
+        var jsonData = $.parseJSON(data)
+
+        var items = [];
+        $.each( jsonData.data, function( key, val ) {
+            items.push( "<li><a href='#' id='" + val + "'>" + val + "</a></li>" );
+        });
+
+        $( ".nav.inline-items" ).html( items )
+
+        $.each( jsonData.data, function( key, val ) {
+            $( "#" + val ).click(function() {
+                loadPage(val)
+            });
+        });
     })
+}
 
-    getPage("Home")
-});
+function getRightPanel(){
+    $.get( "controller.php?filename=phenomenal-h2020.wiki", function( data ) {
+        var jsonData = $.parseJSON(data)
 
-$( "#Home" ).click(function() {
-    getPage("Home")
-});
+        var items = [];
+        $.each( jsonData.data, function( key, val ) {
+            items.push( "<li><a href='#' id='" + val + "'>" + val + "</a></li>" );
+            wikiPageBuffer[val] = 1;
+        });
 
-$( "#phenomenal-h2020" ).click(function() {
-    getPage("Home")
-});
+        $( ".rightColumn" ).html( items )
+
+        $.each( jsonData.data, function( key, val ) {
+            $( "#" + val ).click(function() {
+                loadPage(val)
+            });
+        });
+    })
+}
 
 function getPage(pageName){
     var path = "../wiki-html/phenomenal-h2020.wiki/"
@@ -64,16 +109,21 @@ function getPage(pageName){
         $( '.leftColumn' ).find('a').each(function() {
 
             var localurl = $(this).attr('href')
+            if(wikiPageBuffer[localurl] == 1){
+                //console.log(localurl)
+                //$(this).attr('id', localurl)
 
-            //$(this).attr('id', localurl)
+                $(this).attr('href', '#' + localurl)
 
-            $(this).attr('href', '#' + localurl)
+                //console.log($(this).attr('href'))
 
-            $( 'a[href$=' + "#" + localurl + ']' ).click(function() {
-                $.get( path + localurl, function( data ) {
-                    $( ".leftColumn" ).html( data );
+                $( 'a[href$=' + "#" + localurl + ']' ).click(function() {
+                    $.get( path + localurl, function( data ) {
+                        $( ".leftColumn" ).html( data );
+                    });
                 });
-            });
+            }
+
 
         });
 
