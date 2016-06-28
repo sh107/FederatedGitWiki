@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
-markdownFolder="../wiki-markdown"
-htmlFolder="../wiki-html"
-gitList="../conf/gitList.txt"
+path="/Users/sijinhe/PycharmProjects/FederatedGitWiki"
+markdownFolder="$path/wiki-markdown"
+htmlFolder="$path/wiki-html"
+gitList="$path/conf/gitList.txt"
 
 mkdir -p $markdownFolder
 mkdir -p $htmlFolder
 
 cd $markdownFolder && rm -r *
+
+echo $gitList
 
 while IFS= read line
 do
