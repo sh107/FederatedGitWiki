@@ -21,6 +21,6 @@ do
     for file in `ls ./$dir`;
     do
       filename="${file%.*}"
-      mkdir -p "$htmlFolder/$dir" && markdown2 "$dir/$file" > "$htmlFolder/$dir/$filename"
+      mkdir -p "$htmlFolder/$dir" && markdown2 --extras fenced-code-blocks "$dir/$file" > "$htmlFolder/$dir/$filename"
     done
 done

@@ -28,7 +28,7 @@
 
     <div class="rightColumn">
       <ul class="nav inline-items">
-        <li><a href="#" id="Home">Home</a></li>
+        <!--<li><a href="#" id="Home">Home</a></li>-->
       </ul>
     </div>
 
@@ -58,30 +58,11 @@ var wikiPageBuffer = {}
 
 function loadPage( page ){
 //    getTopPanel()
-    getRightPanel()
-    getPage(page)
+    getRightPanel(page)
+
 }
 
-function getTopPanel() {
-    $.get( "controller.php", function( data ) {
-        var jsonData = $.parseJSON(data)
-
-        var items = [];
-        $.each( jsonData.data, function( key, val ) {
-            items.push( "<li><a href='#' id='" + val + "'>" + val + "</a></li>" );
-        });
-
-        $( ".nav.inline-items" ).html( items )
-
-        $.each( jsonData.data, function( key, val ) {
-            $( "#" + val ).click(function() {
-                loadPage(val)
-            });
-        });
-    })
-}
-
-function getRightPanel(){
+function getRightPanel(page){
     $.get( "controller.php?filename=phenomenal-h2020.wiki", function( data ) {
         var jsonData = $.parseJSON(data)
 
@@ -98,6 +79,8 @@ function getRightPanel(){
                 loadPage(val)
             });
         });
+
+        getPage(page)
     })
 }
 
@@ -130,6 +113,24 @@ function getPage(pageName){
     });
 }
 
+function getTopPanel() {
+    $.get( "controller.php", function( data ) {
+        var jsonData = $.parseJSON(data)
+
+        var items = [];
+        $.each( jsonData.data, function( key, val ) {
+            items.push( "<li><a href='#' id='" + val + "'>" + val + "</a></li>" );
+        });
+
+        $( ".nav.inline-items" ).html( items )
+
+        $.each( jsonData.data, function( key, val ) {
+            $( "#" + val ).click(function() {
+                loadPage(val)
+            });
+        });
+    })
+}
 </script>
 
 </html>
