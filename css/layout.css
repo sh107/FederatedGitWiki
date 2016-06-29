@@ -10,6 +10,10 @@ body { margin: 0; }
 
 .leftColumn { margin-bottom: .5em; }
 
+a {
+    color: blue;
+}
+
 .nav {
   list-style: none;
   margin-left: 0;
