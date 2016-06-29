@@ -16,6 +16,8 @@ Initialise by running the following under your hosting folder
 
     ./bin/run.sh
 
+Setting permission of `bin` `conf` to be 644, other folders can be set as 755
+
 ##Updates v0.2.1
 Production version
 
