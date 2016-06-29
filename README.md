@@ -18,6 +18,10 @@ Initialise by running the following under your hosting folder
 
 Setting permission of `bin` `conf` to be 644, other folders can be set as 755
 
+## Note
+
+If crontab is used, markdown2 needs to specify location
+
 ##Updates v0.2.1
 Production version
 
