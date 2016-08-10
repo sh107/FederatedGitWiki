@@ -22,6 +22,9 @@ Setting permission of `bin` `conf` to be 644, other folders can be set as 755
 
 If crontab is used, markdown2 needs to specify location
 
+##Updates v0.2.2
+Add query string to redirect pages
+
 ##Updates v0.2.1
 Production version
 
