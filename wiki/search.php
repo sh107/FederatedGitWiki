@@ -7,9 +7,8 @@ include('service.php');
 
 switch($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        $file_name = isset($_GET['filename']) ? $_GET['filename'] : '';
-        $format = isset($_GET['format']) ? $_GET['format'] : '';
-        listFiles($file_name, $format);
+        $term = isset($_GET['term']) ? $_GET['term'] : '';
+        searchPageContent($term);
         break;
     default:
         print_r(json_encode(createEmptyJSONDataArray()));
