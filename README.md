@@ -1,5 +1,5 @@
 #Federated Git Wiki
-Version 0.2.1
+Version 0.3
 
 #Installation
 Make sure Python is install in the unix based system.
@@ -18,9 +18,15 @@ Initialise by running the following under your hosting folder
 
 Setting permission of `bin` `conf` to be 644, other folders can be set as 755
 
+`path` in `bin` needs to be set.
+
 ## Note
 
 If crontab is used, markdown2 needs to specify location
+
+##Updates v0.3.1
+Improve bash
+Add full text search
 
 ##Updates v0.2.2
 Add query string to redirect pages
