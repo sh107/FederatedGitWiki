@@ -22,7 +22,7 @@ Setting permission of `bin` `conf` to be 644, other folders can be set as 755
 
 ## Note
 
-If crontab is used, markdown2 needs to specify location
+If crontab is used, the absolute location of markdown2 needs to be specified
 
 ##Updates v0.3.1
 Improve bash
