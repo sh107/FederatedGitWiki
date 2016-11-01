@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-path="/Users/sijinhe/PycharmProjects/FederatedGitWiki"
+path="/Users/sijinhe/PhpstormProjects/FederatedGitWiki"
 markdownFolder="$path/wiki-markdown"
 htmlFolder="$path/wiki-html"
 gitList="$path/conf/gitList.txt"
@@ -8,7 +8,7 @@ extension=".html"
 mkdir -p $markdownFolder
 mkdir -p $htmlFolder
 
-cd $markdownFolder && rm -r *
+cd $markdownFolder && rm -rf *
 
 echo $gitList
 
